@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>oracle.jdbc.driver.OracleDriver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:oracle:thin:@localhost:1521:XE</value>
+		</property>
+		<property name="username">
+			<value>home</value>
+		</property>
+		<property name="password">
+			<value>1234</value>
+		</property>
+	</bean>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- service -->
+	<bean id="memberService" class="com.mycom.camerainfo.service.MemberService" />
+	<bean id="newsService" class="com.mycom.camerainfo.service.NewsService" />
+	<bean id="infoService" class="com.mycom.camerainfo.service.InformationService" >
+		<property name="infoMapper" ref="infoMapper" />
+	</bean>
+	<bean id="gallService" class="com.mycom.camerainfo.service.GallaryService" >
+	    <property name="gallaryMapper" ref="gallaryMapper"></property>
+	</bean>
+	<bean id="reviewService" class="com.mycom.camerainfo.service.ReviewService" />
+		
+	<!-- dto -->
+	<bean id="memberDto" class="com.mycom.camerainfo.dto.MemberDto" />
+	<bean id="newsDto" class="com.mycom.camerainfo.dto.NewsDto" />
+	<bean id="infoDto" class="com.mycom.camerainfo.dto.InformationDto" />
+	<bean id="gallDto" class="com.mycom.camerainfo.dto.GallaryDto" />	
+	<bean id="reviewDto" class="com.mycom.camerainfo.dto.ReviewDto" />
+	
+	<!-- mapper -->
+	<bean id="memberMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.mycom.camerainfo.mapper.MemberMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="newsMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.mycom.camerainfo.mapper.NewsMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="infoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.mycom.camerainfo.mapper.InformationMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="gallaryMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.mycom.camerainfo.mapper.GallaryMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="reviewMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.mycom.camerainfo.mapper.ReviewMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+		
+</beans>
