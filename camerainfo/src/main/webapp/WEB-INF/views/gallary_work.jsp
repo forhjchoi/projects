@@ -36,7 +36,7 @@
 						﻿<ul>
 							<c:forEach var="gall" items="${gallList }">
 							<li class="released_1 FX">
-								<span class="img"><a href="gallary_work_read.do?gallNum=${gall.num }"><img src="upload_gallary/${gall.pic }" alt="" /></a></span>
+								<span class="img"><a href="gallary_work_read.do?gallNum=${gall.num }"><img src="upload_gallary/${gall.file }" alt="" /></a></span>
 								<span class="txt"  onclick=".">
 									<p>${gall.title } </p>
 									<p align="right" margin="1">${gall.author }</p>
