@@ -17,7 +17,6 @@ public class InformationService {
 	
 	public void setInfoMapper(InformationMapper infoMapper) {
 		this.infoMapper = infoMapper;
-		System.out.println("infoMapper == null ::::::::::::::: ");
 	}
 
 	public int insert(HashMap<String, String> map) {

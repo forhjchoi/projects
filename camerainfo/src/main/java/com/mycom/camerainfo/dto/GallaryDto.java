@@ -1,6 +1,7 @@
 package com.mycom.camerainfo.dto;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 @Repository
 public class GallaryDto {
@@ -9,8 +10,9 @@ public class GallaryDto {
 	private int galltype;
 	private int type;
 	private String title;
-	private String author;	
-	private String pic;
+	private String author;
+	private MultipartFile pic;
+	//	private String pic;
 	private String content;
 	private int hits;
 	
@@ -44,12 +46,19 @@ public class GallaryDto {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public String getPic() {
+	
+	public MultipartFile getPic() {
 		return pic;
 	}
-	public void setPic(String pic) {
+	public void setPic(MultipartFile pic) {
 		this.pic = pic;
 	}
+	//	public String getPic() {
+//		return pic;
+//	}
+//	public void setPic(String pic) {
+//		this.pic = pic;
+//	}
 	public String getContent() {
 		return content;
 	}

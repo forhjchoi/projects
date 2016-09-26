@@ -17,4 +17,9 @@ public class HomeController {
 		return "index";
 	}
 	
+	@RequestMapping(value = "/company.do", method = RequestMethod.GET)
+	public String company(Model model) {
+		return "company";
+	}
+	
 }

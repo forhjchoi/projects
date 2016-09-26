@@ -41,6 +41,7 @@
 	    <property name="gallaryMapper" ref="gallaryMapper"></property>
 	</bean>
 	<bean id="reviewService" class="com.mycom.camerainfo.service.ReviewService" />
+	<bean id="commuService" class="com.mycom.camerainfo.service.CommunityService" />
 		
 	<!-- dto -->
 	<bean id="memberDto" class="com.mycom.camerainfo.dto.MemberDto" />
@@ -48,6 +49,7 @@
 	<bean id="infoDto" class="com.mycom.camerainfo.dto.InformationDto" />
 	<bean id="gallDto" class="com.mycom.camerainfo.dto.GallaryDto" />	
 	<bean id="reviewDto" class="com.mycom.camerainfo.dto.ReviewDto" />
+	<bean id="commuDto" class="com.mycom.camerainfo.dto.CommunityDto" />
 	
 	<!-- mapper -->
 	<bean id="memberMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
@@ -72,6 +74,11 @@
 	
 	<bean id="reviewMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.mycom.camerainfo.mapper.ReviewMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="commuMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.mycom.camerainfo.mapper.CommunityMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 		

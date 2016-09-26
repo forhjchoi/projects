@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mycom.camerainfo.dto.GallaryDto;
@@ -13,7 +14,7 @@ import com.mycom.camerainfo.dto.GallaryDto;
 
 @Repository
 public interface GallaryMapper {
-
+	
 	static final String INSERT_MOBILE = "insert into gallary_mobile (num, type, title, author, pic, content, hits) values (gall_mob_seq.NEXTVAL, #{type}, #{title}, #{author}, #{pic}, #{content}, 0)";
 	
 	static final String INSERT_WORK = "insert into gallary_work (num, type, title, author, pic, content, hits) values (gall_work_seq.NEXTVAL, #{type}, #{title}, #{author}, #{pic}, #{content}, 0)";
@@ -32,12 +33,15 @@ public interface GallaryMapper {
 			+ "(select * from gallary_work order by num desc)) where type = #{type}";
 	
 	static final String UPDATE_MOBILE_HITS = "update gallary_mobile set hits = NVL2(hits, hits + 1, 1) where num = #{num}";
+		
 	
 	@Insert(INSERT_MOBILE)
+//	public int insertMobile(GallaryDto gallDto);
 	public int insertMobile(@Param("type") int type, @Param("title") String title, @Param("author") String author, @Param("pic") String pic, @Param("content") String content);
 	
 	@Insert(INSERT_WORK)
-	public int insertWork(@Param("type") int type, @Param("title") String title, @Param("author") String author, @Param("pic") String pic, @Param("content") String content);
+	public int insertWork(GallaryDto gallDto);
+//	public int insertWork(@Param("type") int type, @Param("title") String title, @Param("author") String author, @Param("pic") String pic, @Param("content") String content);
 	
 	@Select(SELECT_MOBILE)
 	public GallaryDto selectMobile(@Param("num") int num);

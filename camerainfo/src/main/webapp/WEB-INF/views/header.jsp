@@ -107,12 +107,12 @@
 								</ul>
 							</li>
 							<li class="general_sub" style="width:137px;"><a
-								href="" class="depth1"><h3>커뮤니티</h3></a>
+								href="commu_free.do" class="depth1"><h3>커뮤니티</h3></a>
 								<ul>
-									<li><a href=".">자유게시판</a></li>
-									<li><a href=".">질문답변</a></li>
-									<li><a href=".">자료실</a></li>
-									<li><a href=".">유저팁</a></li>
+									<li><a href="commu_free.do">자유게시판</a></li>
+									<li><a href="commu_qna.do">질문답변</a></li>
+									<li><a href="commu_data.do">자료실</a></li>
+									<li><a href="commu_tips.do">유저팁</a></li>
 								</ul>
 							</li>
 							<li class="general_sub" style="width:137px;"><a

@@ -18,11 +18,13 @@ public class GallaryService  {
 		this.gallaryMapper = gallaryMapper;
 	}
 
-	public int insert(HashMap<String, String> map) {
-		if(map.get("galltype").equals("0")) {
-			return gallaryMapper.insertWork(Integer.parseInt(map.get("type")), map.get("title"), map.get("author"), map.get("pic"), map.get("content"));
+	public int insert(GallaryDto gallDto) {
+		if(gallDto.getType() == 0) {
+			return gallaryMapper.insertWork(gallDto);
+//			return gallaryMapper.insertWork(Integer.parseInt(map.get("type")), map.get("title"), map.get("author"), map.get("pic"), map.get("content"));
 		} else {
-			return gallaryMapper.insertMobile(Integer.parseInt(map.get("type")),map.get("title"), map.get("author"), map.get("pic"), map.get("content"));
+			return 0;
+//			return gallaryMapper.insertMobile(Integer.parseInt(map.get("type")),map.get("title"), map.get("author"), map.get("pic"), map.get("content"));
 		}		
 	}
 	

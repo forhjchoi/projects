@@ -63,12 +63,12 @@ public class GallaryController {
 	
 	@RequestMapping(value="/gallary_write.do", method = RequestMethod.GET)
 	public String gallaryWrite(Model model) {
-//		model.addAttribute("gallObj", new GallaryDto());
+		model.addAttribute("gallDto", new GallaryDto());
 		return "gallary_writeForm";
 	}
 	
 	@RequestMapping(value = "/gallary_write_ok.do", method = RequestMethod.POST)
-	public ModelAndView gallaryWriteOk(Model model, HttpServletRequest request, @RequestParam HashMap<String, String> map) throws SQLException, IOException, ServletException {
+	public ModelAndView gallaryWriteOk(Model model, HttpServletRequest request, @RequestParam GallaryDto gallDto) throws SQLException, IOException, ServletException {
 		String partName, partValue;
 		ServletContext servletContext = request.getSession().getServletContext();
 		Collection<Part> parts = request.getParts(); // return되는 request객체의  모든 part를 collection에 배정
@@ -81,12 +81,11 @@ public class GallaryController {
 					// getServletContext()는 ServletContext객체를 반환하고 getRealPath()는 현재 web-application의 realpath를 구한다.
 					// realpath = file system을 기준으로 한 경로, virtual path = 현재 web application을 기준으로 하는 경로.????
 					part.write(absolutePath + File.separator + partValue);
-					map.put("pic", partValue);
 				}
 			}
 		}
-		if(gallService.insert(map) > 0) {
-			if(map.get("galltype").equals("0")) {
+		if(gallService.insert(gallDto) > 0) {
+			if(gallDto.getType() == 0) {
 				return new ModelAndView("redirect:/gallary_work.do?current_page=1&type=0");
 			} else {
 				return new ModelAndView("redirect:/gallary_mobile.do?current_page=1&type=0");
@@ -95,6 +94,35 @@ public class GallaryController {
 			return null;
 		}		
 	}
+	
+//	@RequestMapping(value = "/gallary_write_ok.do", method = RequestMethod.POST)
+//	public ModelAndView gallaryWriteOk(Model model, HttpServletRequest request, @RequestParam HashMap<String, String> map) throws SQLException, IOException, ServletException {
+//		String partName, partValue;
+//		ServletContext servletContext = request.getSession().getServletContext();
+//		Collection<Part> parts = request.getParts(); // return되는 request객체의  모든 part를 collection에 배정
+//		for(Part part : parts) { // collection<Part> parts의 각각의 element들을 enhanced for를 이용해 꺼낸다.
+//			partName = part.getName(); // String fileName에 현재 part의 이름을 배정
+//			if(part.getContentType() != null) { // 현재 part의 contenttype이 null이 아니면 (getContentType()은 파일이 아닌 경우에 null을 반환한다)
+//				partValue = getFilename(part); // getFilename(part)에서 넘어온 filename을 partValue에 배정
+//				if(partValue != null && ! partValue.isEmpty()) { // partValue가 null이 아니고 ""가 아니라면(length가 0)
+//					String absolutePath =  servletContext.getRealPath("/WEB-INF/views/upload_gallary");
+//					// getServletContext()는 ServletContext객체를 반환하고 getRealPath()는 현재 web-application의 realpath를 구한다.
+//					// realpath = file system을 기준으로 한 경로, virtual path = 현재 web application을 기준으로 하는 경로.????
+//					part.write(absolutePath + File.separator + partValue);
+//					map.put("pic", partValue);
+//				}
+//			}
+//		}
+//		if(gallService.insert(map) > 0) {
+//			if(map.get("galltype").equals("0")) {
+//				return new ModelAndView("redirect:/gallary_work.do?current_page=1&type=0");
+//			} else {
+//				return new ModelAndView("redirect:/gallary_mobile.do?current_page=1&type=0");
+//			}						
+//		} else {
+//			return null;
+//		}		
+//	}
 	
 	@RequestMapping(value = "/gallary_work_read.do", method = RequestMethod.GET)
 	public String gallaryWorkRead(Model model, @RequestParam("gallNum") String gallNum) throws SQLException {

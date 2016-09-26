@@ -21,10 +21,10 @@
 
 			<!-- 본문 영역 -->
 			<div id="product_list">
-				
+				<div id="press_list">
 			
 				<!-- 탭메뉴 -->
-				<ul class="tabMenu menu04">
+				<ul class="tabMenu menu04" style="margin:0 0 20px 188px;">
 					<li class="on"><a href="gallary_work.do?current_page=1&type=0">풍경</a></li>
 					<li class="on"><a href="gallary_work.do?current_page=1&type=1">여행</a></li>
 					<li class="on"><a href="gallary_work.do?current_page=1&type=2">음식</a></li>
@@ -52,9 +52,12 @@
 													
 						</ul>
 						<c:if test="${memberInfo.id != null }">
-							<div class="tabMen" style="position:relative;">
-							<a href="gallary_write.do" class="details" style="position:absolute; bottom:0; right:0"><h1>갤러리 등록</h1></a>							
-						</div>
+							<div class="page_move">
+								<span><a href="#">&lt;</a></span>
+								<div class="search">
+									<a href="javascript:;" onclick="javascript:goSearch();" class="searching">등록</a>	
+								</div>							 
+							</div>
 						</c:if>
 												
 					</div>					
@@ -62,6 +65,7 @@
 				<!-- //제품 목록 -->			
 			</div>
 			<!-- //본문 영역 -->
+			</div>
 		</div>	
 		<!-- //실제 콘텐츠 영역 -->
 	</div>
