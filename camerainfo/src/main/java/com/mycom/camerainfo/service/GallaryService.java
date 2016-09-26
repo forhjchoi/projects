@@ -20,7 +20,7 @@ public class GallaryService  {
 
 	public int insert(GallaryDto gallDto) {
 		if(gallDto.getType() == 0) {
-			return gallaryMapper.insertWork(gallDto);
+			return gallaryMapper.insertWork(gallDto.getType(), gallDto.getTitle(), gallDto.getAuthor(), gallDto.getFile().getName(), gallDto.getContent());
 //			return gallaryMapper.insertWork(Integer.parseInt(map.get("type")), map.get("title"), map.get("author"), map.get("pic"), map.get("content"));
 		} else {
 			return 0;

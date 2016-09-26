@@ -40,8 +40,7 @@ public interface GallaryMapper {
 	public int insertMobile(@Param("type") int type, @Param("title") String title, @Param("author") String author, @Param("pic") String pic, @Param("content") String content);
 	
 	@Insert(INSERT_WORK)
-	public int insertWork(GallaryDto gallDto);
-//	public int insertWork(@Param("type") int type, @Param("title") String title, @Param("author") String author, @Param("pic") String pic, @Param("content") String content);
+	public int insertWork(@Param("type") int type, @Param("title") String title, @Param("author") String author, @Param("pic") String pic, @Param("content") String content);
 	
 	@Select(SELECT_MOBILE)
 	public GallaryDto selectMobile(@Param("num") int num);

@@ -68,7 +68,7 @@ public class GallaryController {
 	}
 	
 	@RequestMapping(value = "/gallary_write_ok.do", method = RequestMethod.POST)
-	public ModelAndView gallaryWriteOk(Model model, HttpServletRequest request, @RequestParam GallaryDto gallDto) throws SQLException, IOException, ServletException {
+	public ModelAndView gallaryWriteOk(Model model, HttpServletRequest request, @ModelAttribute GallaryDto gallDto) throws SQLException, IOException, ServletException {
 		String partName, partValue;
 		ServletContext servletContext = request.getSession().getServletContext();
 		Collection<Part> parts = request.getParts(); // return되는 request객체의  모든 part를 collection에 배정

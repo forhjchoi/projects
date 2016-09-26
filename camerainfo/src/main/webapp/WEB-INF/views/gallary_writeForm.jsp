@@ -30,7 +30,7 @@
 					
 					<tr>
 						<th class="first"><label for="title">작성자</label></th>
-						<td class="first"><form:input type="text" path="author" value="${memberInfo.id }" readonly/></td>
+						<td class="first"><form:input type="text" path="author" value="${memberInfo.id }" readonly="true"/></td>
 					</tr>
 					<tr>
 						<th><label for="title">제목</label></th>
@@ -64,7 +64,7 @@
 					</tr>
 					<tr>
 						<th><label for="title">이미지</label></th>
-						<td><form:input type="file" id="pic" path="pic"/></td>
+						<td><form:input type="file" id="file" path="file"/></td>
 					</tr>
 				</table>
 				

@@ -55,7 +55,7 @@
 							<div class="page_move">
 								<span><a href="#">&lt;</a></span>
 								<div class="search">
-									<a href="javascript:;" onclick="javascript:goSearch();" class="searching">등록</a>	
+									<a href="gallary_write.do" class="searching">등록</a>	
 								</div>							 
 							</div>
 						</c:if>
