@@ -53,8 +53,10 @@ public class GallaryService  {
 	}
 	
 	public int updateMobileHits(int num) {
-		System.out.println("HI!!!!!!!!!!!!!!!");
 		return gallaryMapper.updateMobileHits(num);
 	}
-
+	
+	public int updateWorkHits(int num) {
+		return gallaryMapper.updateWorkHits(num);
+	}
 }

@@ -30,6 +30,17 @@
 					<li class="on"><a href="gallary_work.do?current_page=1&type=2">음식</a></li>
 					<li class="on"><a href="gallary_work.do?current_page=1&type=3">동물</a></li>
 				</ul>
+				<div class="search">
+					<form id="searchForm" action="gallary_search.do" method="post">
+					<select name="find_type" id="find_type" title="검색분류">
+						<option value="all"selected>전체</option>
+						<option value="subject">제목</option>
+						<option value="content">내용</option>
+					</select>
+					<input type="text" name="find_txt" id="find_txt" value="" maxlength="100" class="" title="검색어" style="width:155px;" />
+					<a href="javascript:document.getElementById('searchForm').submit()" class="searching">검색</a>
+					</form>
+				</div>
 				<!-- //탭메뉴 --><!-- 제품 목록 -->
 				<div class="prod_list_wrap">
 					<div class="prod_list prod_list_dslr">

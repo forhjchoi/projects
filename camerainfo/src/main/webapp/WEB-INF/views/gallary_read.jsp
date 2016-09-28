@@ -32,7 +32,7 @@
 					</tr>
 					<tr>
 						<td colspan="2" class="body">
-							<p><img title="" style="border: 0px solid currentColor; border-image: none;" alt="" src="upload_gallary/${gall.pic }" border="0" vspace="0" hspace="0"><br></p>
+							<p><img title="" style="border: 0px solid currentColor; border-image: none;" alt="" src="upload_gallary/${gall.file }" border="0" vspace="0" hspace="0"><br></p>
 							<p><br/></p>
 							<p align="center">${gall.content }</p>
 							<p><br/></p>

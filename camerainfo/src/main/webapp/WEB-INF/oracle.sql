@@ -19,3 +19,13 @@ select * from gallary_work
 
 select * from (select num, type, title, author, content, pic, rownum, ceil(rownum/6) as page from 
 (select * from gallary_work order by num desc)) where type = 0
+
+select * from (select num, type, title, author, content, pic, rownum, ceil(rownum/3) as page from
+			(select * from gallary_work where title like '%a%' or content like '%a%' order by num desc)) where type = 0
+
+			
+select * from (select num, type, title, author, content, pic, hits, rownum, ceil(rownum/6) as page from
+			(select * from gallary_work where title like '%a%' order by num desc)) where type = 0
+			
+			select * from (select num, type, title, author, content, pic, hits, rownum, ceil(rownum/6) as page from
+			(select * from gallary_work where content like '%a%' order by num desc)) where type = 0
