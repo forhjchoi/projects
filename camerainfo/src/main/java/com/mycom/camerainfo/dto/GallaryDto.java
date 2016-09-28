@@ -11,8 +11,8 @@ public class GallaryDto {
 	private int type;
 	private String title;
 	private String author;
-	private MultipartFile file;
-	//	private String pic;
+	private MultipartFile pic;
+	private String file;
 	private String content;
 	private int hits;
 	
@@ -46,19 +46,19 @@ public class GallaryDto {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+	public MultipartFile getPic() {
+		return pic;
+	}
+	public void setPic(MultipartFile pic) {
+		this.pic = pic;
+	}
 	
-	public MultipartFile getFile() {
+	public String getFile() {
 		return file;
 	}
-	public void setFile(MultipartFile file) {
+	public void setFile(String file) {
 		this.file = file;
 	}
-	//	public String getPic() {
-//		return pic;
-//	}
-//	public void setPic(String pic) {
-//		this.pic = pic;
-//	}
 	public String getContent() {
 		return content;
 	}

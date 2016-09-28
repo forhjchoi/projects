@@ -14,3 +14,8 @@ create table community (
 	depth number(5),
 	hits number(5) not null
 )
+
+select * from gallary_work
+
+select * from (select num, type, title, author, content, pic, rownum, ceil(rownum/6) as page from 
+(select * from gallary_work order by num desc)) where type = 0

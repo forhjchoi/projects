@@ -64,7 +64,7 @@
 					</tr>
 					<tr>
 						<th><label for="title">이미지</label></th>
-						<td><form:input type="file" id="file" path="file"/></td>
+						<td><form:input type="file" id="pic" path="pic"/></td>
 					</tr>
 				</table>
 				

@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mycom.camerainfo.dto.GallaryDto;
@@ -52,6 +53,15 @@ public interface GallaryMapper {
 	public List<GallaryDto> selectMobileList(@Param("type") int type, @Param("page") int page, @Param("rowsPerPage") int rowsPerPage);
 	
 	@Select(SELECT_WORK_LIST)
+	@Results(value = {
+			@Result(property = "num", column = "num"),
+			@Result(property = "galltype", column = "type"),
+			@Result(property = "title", column = "title"),
+			@Result(property = "author", column = "author"),
+			@Result(property = "file", column = "pic"),
+			@Result(property = "content", column = "content"),
+			@Result(property = "hits", column = "hits")
+	})
 	public List<GallaryDto> selectWorkList(@Param("type") int type, @Param("rowsPerPage") int rowsPerPage);
 	
 	@Select(SELECT_CNT_MOBILE)
