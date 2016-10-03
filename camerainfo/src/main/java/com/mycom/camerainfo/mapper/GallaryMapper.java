@@ -26,23 +26,23 @@ public interface GallaryMapper {
 	
 	static final String SELECT_CNT_MOBILE = "select count(*) from gallary_mobile where type=#{type}";	
 	
-	static final String SELECT_CNT_WORK = "select count(*) from gallary_work";
+	static final String SELECT_CNT_WORK = "select count(*) from gallary_work where type = #{type}";
 	
 	static final String SELECT_MOBILE_LIST = "select * from (select num, type, title, author, content, pic, ceil(rownum/#{rowsPerPage}) as page from (select * from gallary_mobile where type = #{type} order by num desc)) where page = #{page}";
 	
 	static final String SELECT_WORK_LIST = "select * from (select num, type, title, author, content, pic, rownum, ceil(rownum/#{rowsPerPage}) as page from "
-			+ "(select * from gallary_work order by num desc)) where type = #{type}";
+			+ "(select * from gallary_work where type = #{type} order by num desc)) where page = #{page}";
 	
-	static final String SELECT_MOBILE_LIST_BY_SEARCH_ALL = "select * from (select num, type, title, author, content, pic, rownum, ceil(rownum/#{rowsPerPage}) as page from "
-			+ "(select * from gallary_work where title like %#{keyword}% or content like %#{keyword}% order by num desc)) where type = #{type}";
+	static final String SELECT_WORK_LIST_BY_SEARCH_ALL = "select * from (select num, type, title, author, content, pic, rownum, ceil(rownum/#{rowsPerPage}) as page from "
+			+ "(select * from gallary_work where title like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%' order by num desc))";
 	
-	static final String SELECT_MOBILE_LIST_BY_SEARCH_TITLE = "select * from (select num, type, title, author, content, pic, hits, rownum, ceil(rownum/#{rowsPerPage}) as page from "
-			+ "(select * from gallary_work where title like %#{keyword}% order by num desc)) where type = #{type}";
 	
-	static final String SELECT_MOBILE_LIST_BY_SEARCH_CONTENT = "select * from (select num, type, title, author, content, pic, hits, rownum, ceil(rownum/#{rowsPerPage}) as page from "
-			+ "(select * from gallary_work where content like %#{keyword}% order by num desc)) where type = #{type}"; 
+	static final String SELECT_WORK_LIST_BY_SEARCH_TITLE = "select * from (select num, type, title, author, content, pic, hits, rownum, ceil(rownum/#{rowsPerPage}) as page from "
+			+ "(select * from gallary_work where title like '%'||#{keyword}||'%' order by num desc))";
+	
+	static final String SELECT_WORK_LIST_BY_SEARCH_CONTENT = "select * from (select num, type, title, author, content, pic, hits, rownum, ceil(rownum/#{rowsPerPage}) as page from "
+			+ "(select * from gallary_work where content like '%'||#{keyword}||'%' order by num desc))"; 
 			
-	
 	static final String UPDATE_MOBILE_HITS = "update gallary_mobile set hits = NVL2(hits, hits + 1, 1) where num = #{num}";
 	
 	static final String UPDATE_WORK_HITS = "update gallary_work set hits = NVL2(hits, hits + 1, 1) where num = #{num}";
@@ -101,7 +101,43 @@ public interface GallaryMapper {
 			@Result(property = "content", column = "content"),
 			@Result(property = "hits", column = "hits")
 	})
-	public List<GallaryDto> selectWorkList(@Param("type") int type, @Param("rowsPerPage") int rowsPerPage);
+	public List<GallaryDto> selectWorkList(@Param("type") int type, @Param("rowsPerPage") int rowsPerPage, @Param("page") int page);
+	
+	@Select(SELECT_WORK_LIST_BY_SEARCH_ALL)
+	@Results(value = {
+			@Result(property = "num", column = "num"),
+			@Result(property = "galltype", column = "type"),
+			@Result(property = "title", column = "title"),
+			@Result(property = "author", column = "author"),
+			@Result(property = "file", column = "pic"),
+			@Result(property = "content", column = "content"),
+			@Result(property = "hits", column = "hits")
+	})
+	public List<GallaryDto> selectWorkListBySearch(@Param("rowsPerPage") int rowsPerPage, @Param("keyword") String keyword);
+	
+	@Select(SELECT_WORK_LIST_BY_SEARCH_TITLE)
+	@Results(value = {
+			@Result(property = "num", column = "num"),
+			@Result(property = "galltype", column = "type"),
+			@Result(property = "title", column = "title"),
+			@Result(property = "author", column = "author"),
+			@Result(property = "file", column = "pic"),
+			@Result(property = "content", column = "content"),
+			@Result(property = "hits", column = "hits")
+	})
+	public List<GallaryDto> selectWorkListBySearchTitle(@Param("rowsPerPage") int rowsPerPage, @Param("keyword") String keyword);
+	
+	@Select(SELECT_WORK_LIST_BY_SEARCH_CONTENT)
+	@Results(value = {
+			@Result(property = "num", column = "num"),
+			@Result(property = "galltype", column = "type"),
+			@Result(property = "title", column = "title"),
+			@Result(property = "author", column = "author"),
+			@Result(property = "file", column = "pic"),
+			@Result(property = "content", column = "content"),
+			@Result(property = "hits", column = "hits")
+	})
+	public List<GallaryDto> selectWorkListBySearchContent(@Param("rowsPerPage") int rowsPerPage, @Param("keyword") String keyword);
 	
 	@Select(SELECT_CNT_MOBILE)
 	public int selectCntMobile(@Param("type") int type);

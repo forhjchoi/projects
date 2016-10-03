@@ -33,9 +33,9 @@
 				<div class="search">
 					<form id="searchForm" action="gallary_search.do" method="post">
 					<select name="find_type" id="find_type" title="검색분류">
-						<option value="all"selected>전체</option>
-						<option value="subject">제목</option>
-						<option value="content">내용</option>
+						<option value="0" selected>전체</option>
+						<option value="1">제목</option>
+						<option value="2">내용</option>
 					</select>
 					<input type="text" name="find_txt" id="find_txt" value="" maxlength="100" class="" title="검색어" style="width:155px;" />
 					<a href="javascript:document.getElementById('searchForm').submit()" class="searching">검색</a>
@@ -48,10 +48,12 @@
 							<c:forEach var="gall" items="${gallList }">
 							<li class="released_1 FX">
 								<span class="img"><a href="gallary_work_read.do?gallNum=${gall.num }"><img src="upload_gallary/${gall.file }" alt="" /></a></span>
-								<span class="txt"  onclick=".">
-									<p>${gall.title } </p>
-									<p align="right" margin="1">${gall.author }</p>
-								</span>
+								<a href="gallary_work_read.do?gallNum=${gall.num }">
+									<span class="txt">
+										<p>${gall.title } </p>
+										<p align="right" margin="1">${gall.author }</p>
+									</span>
+								</a>
 							</li>		
 							</c:forEach>
 							<%
@@ -59,7 +61,20 @@
 								int total_cnt = ((Integer) (pageContext.getAttribute("total_cnt"))).intValue();
 								int total_pages = PageNumberingService.getInstance().getTotalPage(total_cnt, rowsPerPages);
 								pageContext.setAttribute("t_pages", total_pages);
-							%>					
+							%>
+							<div class="pager">
+								<div class="page_list">
+									<c:forEach var="i" begin="1" end="${t_pages }">
+										<span class="selected">
+											<a href="gallary_work.do?current_page=${i }&type=0">
+											<c:if test="${i == c_page }" ><b/></c:if>
+											${i }
+											<c:if test="${i == c_page }" ><b/></c:if>											
+											</a>
+										</span>
+									</c:forEach>										
+								</div>
+							</div>			
 													
 						</ul>
 						<c:if test="${memberInfo.id != null }">

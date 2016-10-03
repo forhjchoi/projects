@@ -3,7 +3,9 @@ package com.mycom.camerainfo.controller;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -43,7 +45,7 @@ public class GallaryController {
 		model.addAttribute("totalCnt", new Integer(gallService.selectCntWork(Integer.parseInt(type))));
 		model.addAttribute("current_page", page);
 		model.addAttribute("type", type);
-		model.addAttribute("gallList", gallService.selectWorkList(Integer.parseInt(type), 6));
+		model.addAttribute("gallList", gallService.selectWorkList(Integer.parseInt(type), 3, Integer.parseInt(page)));
 		
 		return "gallary_work";
 	}
@@ -53,7 +55,7 @@ public class GallaryController {
 		model.addAttribute("totalCnt", new Integer(gallService.selectCntMobile(Integer.parseInt(type))));
 		model.addAttribute("current_page", page);
 		model.addAttribute("type", type);
-		model.addAttribute("gallList", gallService.selectMobileList(Integer.parseInt(type), Integer.parseInt(page), 6));
+		model.addAttribute("gallList", gallService.selectMobileList(Integer.parseInt(type), Integer.parseInt(page), 3));
 		
 		return "gallary_mobile";
 	}
@@ -94,6 +96,12 @@ public class GallaryController {
 	
 	@RequestMapping(value = "/gallary_search.do", method = RequestMethod.POST)
 	public String gallarySearch(Model model, @RequestParam("find_type") String type, @RequestParam("find_txt") String text) {
+	
+		model.addAttribute("totalCnt", gallService.selectWorkListBySearch(3, Integer.parseInt(type), text).size());
+		model.addAttribute("current_page", "1");
+		model.addAttribute("type", "0");
+		model.addAttribute("gallList", gallService.selectWorkListBySearch(3, Integer.parseInt(type), text));
+		
 		return "gallary_work";
 	}
 	

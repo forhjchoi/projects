@@ -21,10 +21,8 @@ public class GallaryService  {
 	public int insert(GallaryDto gallDto) {
 		if(gallDto.getType() == 0) {
 			return gallaryMapper.insertWork(gallDto.getType(), gallDto.getTitle(), gallDto.getAuthor(), gallDto.getPic().getOriginalFilename(), gallDto.getContent());
-//			return gallaryMapper.insertWork(Integer.parseInt(map.get("type")), map.get("title"), map.get("author"), map.get("pic"), map.get("content"));
 		} else {
 			return 0;
-//			return gallaryMapper.insertMobile(Integer.parseInt(map.get("type")),map.get("title"), map.get("author"), map.get("pic"), map.get("content"));
 		}		
 	}
 	
@@ -40,8 +38,8 @@ public class GallaryService  {
 		return gallaryMapper.selectMobileList(type, page, rowsPerPage);		
 	}
 	
-	public List<GallaryDto> selectWorkList(int type, int rowsPerPage) {
-		return gallaryMapper.selectWorkList(type, rowsPerPage);		
+	public List<GallaryDto> selectWorkList(int type, int rowsPerPage, int page) {
+		return gallaryMapper.selectWorkList(type, rowsPerPage, page);		
 	}
 	
 	public int selectCntMobile(int type) {
@@ -58,5 +56,18 @@ public class GallaryService  {
 	
 	public int updateWorkHits(int num) {
 		return gallaryMapper.updateWorkHits(num);
+	}
+	
+	public List<GallaryDto> selectWorkListBySearch(int rowsPerPage, int type, String keyword) {
+		switch(type) {
+		case 0 :
+			return gallaryMapper.selectWorkListBySearch(rowsPerPage, keyword);
+		case 1 :
+			return gallaryMapper.selectWorkListBySearchTitle(rowsPerPage, keyword);
+		case 2 : 
+			return gallaryMapper.selectWorkListBySearchContent(rowsPerPage, keyword);
+		default :
+			return null;
+		}		
 	}
 }
