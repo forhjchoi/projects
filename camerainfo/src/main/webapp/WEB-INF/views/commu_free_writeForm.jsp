@@ -48,7 +48,7 @@
 					</tr>
 					<tr>
 						<th><label for="title">첨부파일</label></th>
-						<td><form:input type="file" id="pic" path="file"/></td>
+						<td><form:input type="file" id="pic" path="pic"/></td>
 					</tr>
 				</table>
 				<form:input type="hidden" path="type" value="0" />

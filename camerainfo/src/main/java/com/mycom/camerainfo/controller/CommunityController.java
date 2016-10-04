@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mycom.camerainfo.dto.CommunityDto;
@@ -32,7 +33,11 @@ public class CommunityController {
 	CommunityDto commuDto;
 
 	@RequestMapping(value = "/commu_free.do", method = RequestMethod.GET)
-	public String commuFree(Model model) {		
+	public String commuFree(Model model, @RequestParam("currentPage") String page) {
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalCnt", new Integer(commuService.selectCntFree()));
+		model.addAttribute("freeList", commuService.selectFree(Integer.parseInt(page)));
+		
 		return "commu_free";
 	}
 	
@@ -73,7 +78,7 @@ public class CommunityController {
 				}
 			}
 		}
-		commuService.insertFreeNoFile(communityDto);
+		commuService.insertFree(communityDto);
 		
 		return new ModelAndView("redirect:/commu_free.do");
 	}

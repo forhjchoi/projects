@@ -10,9 +10,9 @@ public class CommunityDto {
 	String email;
 	String title;
 	String content;
-	String pic;
+	String file;
 	String wdate;	 
-	MultipartFile file;
+	MultipartFile pic;
 	int step;
 	int ref;
 	int depth;
@@ -60,16 +60,16 @@ public class CommunityDto {
 	public void setWdate(String wdate) {
 		this.wdate = wdate;
 	}
-	public MultipartFile getFile() {
+	public String getFile() {
 		return file;
 	}
-	public void setFile(MultipartFile file) {
+	public void setFile(String file) {
 		this.file = file;
 	}
-	public String getPic() {
+	public MultipartFile getPic() {
 		return pic;
 	}
-	public void setPic(String pic) {
+	public void setPic(MultipartFile pic) {
 		this.pic = pic;
 	}
 	public int getStep() {

@@ -25,3 +25,5 @@ select * from (select num, type, title, author, content, pic, rownum, ceil(rownu
 			
 insert into community (idx, type, name, email, title, content, wdate, hits)
 		values (community_seq.NEXTVAL, 0, 'aa1', 'aa1', 'aa1', 'aa1', SYSDATE, 0)
+
+select * from (select idx, title, wdate, hits, rownum, ceil(rownum/2) as page from (select * from community where type = 0 order by idx desc)) where page = 2

@@ -41,7 +41,9 @@
 	    <property name="gallaryMapper" ref="gallaryMapper"></property>
 	</bean>
 	<bean id="reviewService" class="com.mycom.camerainfo.service.ReviewService" />
-	<bean id="commuService" class="com.mycom.camerainfo.service.CommunityService" />
+	<bean id="commuService" class="com.mycom.camerainfo.service.CommunityService">
+		<property name="communityMapper" ref="communityMapper" />
+	</bean>
 		
 	<!-- dto -->
 	<bean id="memberDto" class="com.mycom.camerainfo.dto.MemberDto" />

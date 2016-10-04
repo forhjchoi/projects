@@ -34,22 +34,26 @@
 				<table class="press">
 					<colgroup>
 						<col style="width:15%;" />
-						<col style="width:65%;" />
-						<col style="width:20%;" />
+						<col style="width:60%;" />
+						<col style="width:15%;" />
+						<col style="width:10%;" />
 					</colgroup>
 					<tr>
 						<th scope="col">번호</th>
 						<th scope="col">제목</th>
-						<th scope="col" class="bg0 bdr0">등록일</th>
+						<th scope="col">작성자</th>
+						<th scope="col" class="bg0 bdr0">조회수</th>
 					</tr>
-								  		  
-						  <tr>
-							<td>329</td>
-							<td class="align_l">
-								<a href="javascript:viewnotice('329');">포토스쿨 8월 특설반 개설 안내</a>
-							</td>
-							<td class="bdr0">2016-08-01</td>
-						  </tr>
+					<c:forEach var="free" items="${freeList }">					
+					<tr>
+						<td>${free.idx }</td>
+						<td class="align_l" style="text-align:center;">
+							<a href="javascript:viewnotice('329');">${free.title }</a>
+						</td>
+						<td>${free.name }</td>
+						<td class="bdr0">${free.hits }</td>
+					</tr>
+					</c:forEach>	  
 				</table>
 				
 				<div class="pager">
