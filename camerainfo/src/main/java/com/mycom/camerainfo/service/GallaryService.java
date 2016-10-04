@@ -58,14 +58,14 @@ public class GallaryService  {
 		return gallaryMapper.updateWorkHits(num);
 	}
 	
-	public List<GallaryDto> selectWorkListBySearch(int rowsPerPage, int type, String keyword) {
+	public List<GallaryDto> selectWorkListBySearch(int rowsPerPage, int type, String keyword, int page) {
 		switch(type) {
 		case 0 :
-			return gallaryMapper.selectWorkListBySearch(rowsPerPage, keyword);
+			return gallaryMapper.selectWorkListBySearch(rowsPerPage, keyword, page);
 		case 1 :
-			return gallaryMapper.selectWorkListBySearchTitle(rowsPerPage, keyword);
+			return gallaryMapper.selectWorkListBySearchTitle(rowsPerPage, keyword, page);
 		case 2 : 
-			return gallaryMapper.selectWorkListBySearchContent(rowsPerPage, keyword);
+			return gallaryMapper.selectWorkListBySearchContent(rowsPerPage, keyword, page);
 		default :
 			return null;
 		}		

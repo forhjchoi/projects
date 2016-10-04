@@ -38,6 +38,8 @@
 						<option value="2">내용</option>
 					</select>
 					<input type="text" name="find_txt" id="find_txt" value="" maxlength="100" class="" title="검색어" style="width:155px;" />
+					<input type="hidden" name="current_page" value="1" />
+					<input type="hidden" name="type" value="type" />
 					<a href="javascript:document.getElementById('searchForm').submit()" class="searching">검색</a>
 					</form>
 				</div>
@@ -79,7 +81,7 @@
 						</ul>
 						<c:if test="${memberInfo.id != null }">
 							<div class="page_move">
-								<span><a href="#">&lt;</a></span>
+								<span><a href="#"></a></span>
 								<div class="search">
 									<a href="gallary_write.do" class="searching">등록</a>	
 								</div>							 

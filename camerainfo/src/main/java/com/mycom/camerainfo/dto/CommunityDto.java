@@ -1,5 +1,7 @@
 package com.mycom.camerainfo.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class CommunityDto {
 
 	int idx;
@@ -10,7 +12,7 @@ public class CommunityDto {
 	String content;
 	String pic;
 	String wdate;	 
-
+	MultipartFile file;
 	int step;
 	int ref;
 	int depth;
@@ -57,6 +59,12 @@ public class CommunityDto {
 	}
 	public void setWdate(String wdate) {
 		this.wdate = wdate;
+	}
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 	public String getPic() {
 		return pic;

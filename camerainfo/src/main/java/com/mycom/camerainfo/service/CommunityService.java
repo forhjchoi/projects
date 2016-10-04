@@ -11,7 +11,8 @@ public class CommunityService {
 	@Autowired
 	CommunityMapper commuMapper;
 	
-//	public int insert(CommunityDto commuDto) {
-//		commuMapper.insert(map)
-//	}
+	public int insertFreeNoFile(CommunityDto commuDto) {
+		return commuMapper.insertFreeNoFile(commuDto);
+//		return commuMapper.insertFreeNoFile(commuDto.getName(), commuDto.getEmail(), commuDto.getTitle(), commuDto.getContent());
+	}
 }

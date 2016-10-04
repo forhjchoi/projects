@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="header.jsp" %>
 <div id="location">
 		<div class="box_960">
@@ -22,37 +23,41 @@
 			</h1>
 
 			<!-- 본문 영역 -->
-			<form id="commuForm" action="commu_free_write_ok.do" method="post" enctype="multipart/form-data">
+			<form:form id="commuForm" action="commu_free_write_ok.do" method="post" enctype="multipart/form-data" modelAttribute="commuDto">
 			<div id="school_board_write">
 				<table class="tbl_vertical">
 					<caption>글쓰기</caption>
 					
 					<tr>
 						<th class="first"><label for="title">작성자</label></th>
-						<td class="first"><input type="text" name="author" value="${memberInfo.id }" readonly/></td>
+						<td class="first"><form:input type="text" path="name" value="${memberInfo.id }" readonly="true"/></td>
+					</tr>
+					<tr>
+						<th><label for="title">E-mail</label></th>
+						<td><form:input type="text" id="title" path="email" maxlength="100" title="제목"/></td>
 					</tr>
 					<tr>
 						<th><label for="title">제목</label></th>
-						<td><input type="text" id="title" name="title" maxlength="100" title="제목"/></td>
+						<td><form:input type="text" id="title" path="title" maxlength="100" title="제목"/></td>
 					</tr>
 					<tr>
 						<th><label for="body">내용</label></th>
 						<td>
-							<textarea id="content" name="content" cols="30" rows="10"></textarea>
+							<form:textarea id="content" path="content" cols="30" rows="10"></form:textarea>
 						</td>
 					</tr>
 					<tr>
-						<th><label for="title">이미지</label></th>
-						<td><input type="file" id="pic" name="pic"/></td>
+						<th><label for="title">첨부파일</label></th>
+						<td><form:input type="file" id="pic" path="file"/></td>
 					</tr>
 				</table>
-				
+				<form:input type="hidden" path="type" value="0" />
 				<div class="btns">
 					<a href="javascript:document.getElementById('commuForm').submit()" class="btn yellow">확인</a>
 					<a href="javascript:history.back();" class="btn gray">취소</a>
 				</div>				
 			</div>
-			</form>
+			</form:form>
 			<!-- //본문 영역 -->
 
 		</div>	

@@ -31,7 +31,7 @@
 							<img src="img/logo.png" alt="" />
 						</div>
 						<div class="company_txt">
-							<p><span class="strong">CameraInfo는 히트다히트!!!!!!!</span> </p>
+							<p></p>
 							<table class="tbl_vertical">
 								<caption>니콘 회사 정보</caption>
 								<colgroup>
@@ -41,7 +41,7 @@
 								<tbody>
 									<tr>
 										<th class="first" scope="row">대표이사</th>
-										<td class="first bdr0">이창호</td>
+										<td class="first bdr0">최현준</td>
 									</tr>
 									<tr>
 										<th scope="row">설립년도</th>

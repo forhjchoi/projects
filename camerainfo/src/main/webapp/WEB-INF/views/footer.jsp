@@ -84,31 +84,9 @@
 			<div class="info">
 				<div class="box_960">
 					<div class="info_txt">
-						상호명 : CameraInfo (카메라인포)    /    대표이사 : 이창호    /    TEL : 000-0000-0000    /    FAX : 00-0000-0000<br/>
+						상호명 : CameraInfo (카메라인포)    /    대표이사 : 최현준    /    TEL : 000-0000-0000    /    FAX : 00-0000-0000<br/>
 						주소 : 서울특별시 노원구 월계동 초안산로 산 12 인관 302호<br/>
 						사업자등록번호 : 000-00-00000    /    통신판매업신고 : 노원구 제00000호    /   콜센터 운영시간 : 평일 09:00~18:00 (토·일·공휴일 휴무)
-					</div>
-				</div>			
-			</div>
-			<div class="info2">
-				<div class="box_960">
-					<div class="info_txt">
-						상호명 : 주식회사 니콘이미징코리아 / 대표이사 : 키타바타 히데유키 / TEL : 080-800-6600 / FAX : 02-2026-0029 /     
-						주소 : 서울특별시 중구 세종대로 39 대한상공회의소 12층 (중구 남대문로 4-45) (우:04513) /    
-						사업자등록번호 : 104-81-98839 / 통신판매업신고 : 중구 제05801호 / 센터 운영시간 : 평일 09:00 ~ 18:00 (토·일·공휴일 휴무)
-					</div>
-					<div class="info_img">
-						<div class="sns_box_m">
-							<ul>
-								<li><a href="http://nikonblog.co.kr/" target="_blank" class="sns1"><span class="blind">니콘이미징코리아 블로그</span></a></li>
-								<li><a href="https://www.facebook.com/NikonImagingKorea" target="_blank" class="sns2"><span class="blind">니콘이미징코리아 페이스북</span></a></li>
-								<li><a href="https://www.youtube.com/user/nikonimagingkorea" target="_blank" class="sns3"><span class="blind">니콘이미징코리아 Youtube</span></a></li>
-								<li><a href="https://www.instagram.com/nikon1_j5_korea/?src=email&kw=00009C&ACENO=33" target="_blank" class="sns4"><span class="blind">니콘이미징코리아 인스타그램</span></a></li>
-							</ul>
-						</div>
-						<a href="javascript:;" onclick="javascript:cmsPopup();"><img src="/img/footer_symbol1.jpg" alt="" /></a>
-						<a href="javascript:go_shop_check();" ><img src="/img/footer_symbol2.jpg" alt="" /></a>
-						<span>© 2016 Nikon Imaging Korea CO., LTD</span>
 					</div>
 				</div>			
 			</div>

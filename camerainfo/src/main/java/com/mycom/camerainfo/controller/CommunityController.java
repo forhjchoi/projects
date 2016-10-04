@@ -4,7 +4,6 @@ package com.mycom.camerainfo.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.HashMap;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -12,14 +11,23 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.mycom.camerainfo.dto.CommunityDto;
+import com.mycom.camerainfo.service.CommunityService;
 
 @Controller
 @MultipartConfig
 public class CommunityController {
+	
+	@Autowired
+	CommunityService commuService;
 
 	@RequestMapping(value = "/commu_free.do", method = RequestMethod.GET)
 	public String commuFree(Model model) {		
@@ -43,11 +51,12 @@ public class CommunityController {
 	
 	@RequestMapping(value = "/commu_free_write.do", method = RequestMethod.GET)
 	public String commuFreeWrite(Model model) {
+		model.addAttribute("commuDto", new CommunityDto());
 		return "commu_free_writeForm";
 	}
 	
-	@RequestMapping(value = "/commu_free_write_ok", method = RequestMethod.GET)
-	public String commuFreeWriteOk(Model model, HttpServletRequest request, HashMap<String, String> map) throws ServletException, IOException {
+	@RequestMapping(value = "/commu_free_write_ok", method = RequestMethod.POST)
+	public ModelAndView commuFreeWriteOk(Model model, HttpServletRequest request, @ModelAttribute CommunityDto commuDto) throws ServletException, IOException {
 		String partName, partValue;
 		ServletContext servletContext = request.getSession().getServletContext();
 		Collection<Part> parts = request.getParts();
@@ -55,14 +64,17 @@ public class CommunityController {
 			partName = part.getName();
 			if(part.getContentType() != null) {
 				partValue = getFilename(part);
-				if(partValue != null && !partName.isEmpty()) {
+				if(partValue != null && !partValue.isEmpty()) {
 					String absolutePath = servletContext.getRealPath("/WEB-INF/views/upload_commu");
 					part.write(absolutePath + File.separator + partValue);
-					map.put("pic", partValue);
+					
 				}
 			}
 		}
-		return null;
+		
+		System.out.println(commuService.insertFreeNoFile(commuDto));
+		
+		return new ModelAndView("redirect:/commu_free.do");
 	}
 	
 	private String getFilename(Part part) { // part의 filename알아내기

@@ -95,12 +95,13 @@ public class GallaryController {
 	}
 	
 	@RequestMapping(value = "/gallary_search.do", method = RequestMethod.POST)
-	public String gallarySearch(Model model, @RequestParam("find_type") String type, @RequestParam("find_txt") String text) {
+	public String gallarySearch(Model model, @RequestParam("find_type") String f_type, @RequestParam("find_txt") String f_text, 
+			@RequestParam("current_page") String page) {
 	
-		model.addAttribute("totalCnt", gallService.selectWorkListBySearch(3, Integer.parseInt(type), text).size());
-		model.addAttribute("current_page", "1");
-		model.addAttribute("type", "0");
-		model.addAttribute("gallList", gallService.selectWorkListBySearch(3, Integer.parseInt(type), text));
+		model.addAttribute("totalCnt", gallService.selectWorkListBySearch(3, Integer.parseInt(f_type), f_text, Integer.parseInt(page)).size());
+		model.addAttribute("current_page", page);
+		model.addAttribute("type", "1");
+		model.addAttribute("gallList", gallService.selectWorkListBySearch(3, Integer.parseInt(f_type), f_text, Integer.parseInt(page)));
 		
 		return "gallary_work";
 	}
