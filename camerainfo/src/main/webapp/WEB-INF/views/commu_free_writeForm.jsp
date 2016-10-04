@@ -23,7 +23,7 @@
 			</h1>
 
 			<!-- 본문 영역 -->
-			<form:form id="commuForm" action="commu_free_write_ok.do" method="post" enctype="multipart/form-data" modelAttribute="commuDto">
+			<form:form id="commuForm" action="commu_free_write_ok.do" method="post" enctype="multipart/form-data" modelAttribute="communityDto">
 			<div id="school_board_write">
 				<table class="tbl_vertical">
 					<caption>글쓰기</caption>

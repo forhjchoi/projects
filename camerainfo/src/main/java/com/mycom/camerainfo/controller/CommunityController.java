@@ -28,6 +28,8 @@ public class CommunityController {
 	
 	@Autowired
 	CommunityService commuService;
+	@Autowired
+	CommunityDto commuDto;
 
 	@RequestMapping(value = "/commu_free.do", method = RequestMethod.GET)
 	public String commuFree(Model model) {		
@@ -51,12 +53,13 @@ public class CommunityController {
 	
 	@RequestMapping(value = "/commu_free_write.do", method = RequestMethod.GET)
 	public String commuFreeWrite(Model model) {
-		model.addAttribute("commuDto", new CommunityDto());
+//		model.addAttribute("commuDto", commuDto);
+		model.addAttribute("communityDto", new CommunityDto());
 		return "commu_free_writeForm";
 	}
 	
 	@RequestMapping(value = "/commu_free_write_ok", method = RequestMethod.POST)
-	public ModelAndView commuFreeWriteOk(Model model, HttpServletRequest request, @ModelAttribute CommunityDto commuDto) throws ServletException, IOException {
+	public ModelAndView commuFreeWriteOk(Model model, HttpServletRequest request, @ModelAttribute CommunityDto communityDto) throws ServletException, IOException {
 		String partName, partValue;
 		ServletContext servletContext = request.getSession().getServletContext();
 		Collection<Part> parts = request.getParts();
@@ -66,13 +69,11 @@ public class CommunityController {
 				partValue = getFilename(part);
 				if(partValue != null && !partValue.isEmpty()) {
 					String absolutePath = servletContext.getRealPath("/WEB-INF/views/upload_commu");
-					part.write(absolutePath + File.separator + partValue);
-					
+					part.write(absolutePath + File.separator + partValue);					
 				}
 			}
 		}
-		
-		System.out.println(commuService.insertFreeNoFile(commuDto));
+		commuService.insertFreeNoFile(communityDto);
 		
 		return new ModelAndView("redirect:/commu_free.do");
 	}

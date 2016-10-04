@@ -24,4 +24,4 @@ select * from (select num, type, title, author, content, pic, rownum, ceil(rownu
 			(select * from gallary_work where title like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%' order by num desc))
 			
 insert into community (idx, type, name, email, title, content, wdate, hits)
-			values (community_seq.NEXTVAL, 0, 'aa', 'aa', 'aa', 'aa', SYSDATE, 0)
+		values (community_seq.NEXTVAL, 0, 'aa1', 'aa1', 'aa1', 'aa1', SYSDATE, 0)

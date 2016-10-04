@@ -9,10 +9,10 @@ import com.mycom.camerainfo.mapper.CommunityMapper;
 @Component
 public class CommunityService {
 	@Autowired
-	CommunityMapper commuMapper;
+	CommunityMapper communityMapper;
 	
-	public int insertFreeNoFile(CommunityDto commuDto) {
-		return commuMapper.insertFreeNoFile(commuDto);
-//		return commuMapper.insertFreeNoFile(commuDto.getName(), commuDto.getEmail(), commuDto.getTitle(), commuDto.getContent());
+	public void insertFreeNoFile(CommunityDto commuDto) {
+//		return commuMapper.insertFreeNoFile(commuDto);
+		communityMapper.insertFreeNoFile(commuDto.getName(), commuDto.getEmail(), commuDto.getTitle(), commuDto.getContent());
 	}
 }
