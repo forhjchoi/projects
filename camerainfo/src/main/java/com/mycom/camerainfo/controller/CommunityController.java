@@ -36,9 +36,24 @@ public class CommunityController {
 	public String commuFree(Model model, @RequestParam("currentPage") String page) {
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalCnt", new Integer(commuService.selectCntFree()));
-		model.addAttribute("freeList", commuService.selectFree(Integer.parseInt(page)));
+		model.addAttribute("freeList", commuService.selectListFree(Integer.parseInt(page)));
 		
 		return "commu_free";
+	}
+	
+	@RequestMapping(value = "/commu_free_write.do", method = RequestMethod.GET)
+	public String commuFreeWrite(Model model) {
+		model.addAttribute("communityDto", new CommunityDto());
+		return "commu_free_writeForm";
+	}
+	
+	@RequestMapping(value = "/commu_free_read.do", method = RequestMethod.GET)
+	public String commuFreeRead(Model model, @RequestParam("num") String num) {
+		model.addAttribute("maxCnt", new Integer(commuService.selectCntFree()));
+		model.addAttribute("minCnt", new Integer(commuService.selectCntFreeMin()));
+		model.addAttribute("article", commuService.selectFree(Integer.parseInt(num)));
+		
+		return "commu_free_read";
 	}
 	
 	@RequestMapping(value = "/commu_qna.do", method = RequestMethod.GET)
@@ -54,13 +69,6 @@ public class CommunityController {
 	@RequestMapping(value = "/commu_tips.do", method = RequestMethod.GET) 
 	public String commuTips(Model model) {
 		return "commu_tips";
-	}
-	
-	@RequestMapping(value = "/commu_free_write.do", method = RequestMethod.GET)
-	public String commuFreeWrite(Model model) {
-//		model.addAttribute("commuDto", commuDto);
-		model.addAttribute("communityDto", new CommunityDto());
-		return "commu_free_writeForm";
 	}
 	
 	@RequestMapping(value = "/commu_free_write_ok", method = RequestMethod.POST)

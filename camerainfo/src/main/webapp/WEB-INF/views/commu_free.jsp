@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="header.jsp" %>
+
    <form name="notice_frm" id="notice_frm" method="get" action="">
 	<div id="location">
 		<div class="box_960">
@@ -48,7 +49,7 @@
 					<tr>
 						<td>${free.idx }</td>
 						<td class="align_l" style="text-align:center;">
-							<a href="javascript:viewnotice('329');">${free.title }</a>
+							<a href="commu_free_read.do?num=${free.idx }">${free.title }</a>
 						</td>
 						<td>${free.name }</td>
 						<td class="bdr0">${free.hits }</td>

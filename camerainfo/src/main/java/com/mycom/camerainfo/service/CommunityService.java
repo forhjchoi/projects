@@ -29,8 +29,17 @@ public class CommunityService {
 		return communityMapper.selectCntFree();
 	}
 	
-	public List<CommunityDto> selectFree(int page) {
+	public int selectCntFreeMin() {
+		return communityMapper.selectCntFreeMin();
+	}
+	
+	public List<CommunityDto> selectListFree(int page) {
 		return communityMapper.selectListFree(page);
 	}
+	
+	public CommunityDto selectFree(int page) {
+		return communityMapper.selectFree(page);
+	}
+	
 	
 }
