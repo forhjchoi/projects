@@ -33,10 +33,10 @@ public class CommunityController {
 	CommunityDto commuDto;
 
 	@RequestMapping(value = "/commu_free.do", method = RequestMethod.GET)
-	public String commuFree(Model model, @RequestParam("currentPage") String page) {
-		model.addAttribute("currentPage", page);
+	public String commuFree(Model model, @RequestParam("current_page") String currentPage) {
+		model.addAttribute("current_page", currentPage);
 		model.addAttribute("totalCnt", new Integer(commuService.selectCntFree()));
-		model.addAttribute("freeList", commuService.selectListFree(Integer.parseInt(page)));
+		model.addAttribute("freeList", commuService.selectListFree(Integer.parseInt(currentPage)));
 		
 		return "commu_free";
 	}
@@ -51,9 +51,17 @@ public class CommunityController {
 	public String commuFreeRead(Model model, @RequestParam("num") String num) {
 		model.addAttribute("maxCnt", new Integer(commuService.selectCntFree()));
 		model.addAttribute("minCnt", new Integer(commuService.selectCntFreeMin()));
+		commuService.updateFreeHitsCnt(Integer.parseInt(num));
 		model.addAttribute("article", commuService.selectFree(Integer.parseInt(num)));
 		
 		return "commu_free_read";
+	}
+	
+	@RequestMapping(value = "/commu_free_edit.do", method = RequestMethod.GET)
+	public String commuFreeEdit(Model model, @RequestParam("num") String num) {
+		model.addAttribute("communityDto", commuService.selectFree(Integer.parseInt(num)));
+//		model.addAttribute("communityDto", commuDto);
+		return "commu_free_editForm";
 	}
 	
 	@RequestMapping(value = "/commu_qna.do", method = RequestMethod.GET)

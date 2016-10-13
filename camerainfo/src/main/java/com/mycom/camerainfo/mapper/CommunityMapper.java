@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import com.mycom.camerainfo.dto.CommunityDto;
@@ -30,6 +31,8 @@ public interface CommunityMapper {
 	public static final String SELECT_LIST_FREE_RECENT = "selec";
 	
 	public static final String SELECT_FREE = "select idx, name, email, title, content, pic, wdate, hits from community where idx=#{idx}";
+	
+	public static final String UPDATE_FREE_HITS_CNT = "update community set hits = NVL2(hits, hits + 1, 1) where idx = #{idx}";
 	
 	@Insert(INSERT_FREE)
 	public int insertFree(CommunityDto commuDto);
@@ -60,7 +63,8 @@ public interface CommunityMapper {
 	})
 	public CommunityDto selectFree(@Param("idx") int idx);
 	
-	
+	@Update(UPDATE_FREE_HITS_CNT)
+	public void updateFreeHitsCnt(@Param("idx") int idx);
 }
 
 

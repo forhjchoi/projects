@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="header.jsp" %>
+<c:set var="file" value="${communityDto.file }" />
 <div id="location">
 		<div class="box_960">
 			<span>
@@ -23,36 +24,35 @@
 			</h1>
 
 			<!-- 본문 영역 -->
-			<form:form id="commuForm" action="commu_free_write_ok.do" method="post" enctype="multipart/form-data" modelAttribute="communityDto">
+			<form:form id="commuForm" action="commu_free_write_ok.do" method="post" enctype="multipart/form-data" commandName="communityDto">
 			<div id="school_board_write">
 				<table class="tbl_vertical">
-					<caption>글쓰기</caption>
+					<caption>글수정</caption>
 					
 					<tr>
 						<th class="first"><label for="title">작성자</label></th>
-						<td class="first"><form:input type="text" path="name" value="${memberInfo.id }" readonly="true"/></td>
+						<td class="first"><form:input type="text" path="name" readonly="true"/></td>
 					</tr>
 					<tr>
 						<th><label for="title">E-mail</label></th>
-						<td><form:input type="text" id="title" path="email" maxlength="100" title="제목"/></td>
+						<td><form:input type="text" id="title" path="email" maxlength="100" readonly="true"/></td>
 					</tr>
 					<tr>
 						<th><label for="title">제목</label></th>
-						<td><form:input type="text" id="title" path="title" maxlength="100" title="제목"/></td>
+						<td><form:input type="text" id="title" path="title" maxlength="100" readonly="true"/></td>
 					</tr>
 					<tr>
 						<th><label for="body">내용</label></th>
 						<td>
-							<form:textarea id="content" path="content" cols="30" rows="10"></form:textarea>
+							<form:textarea id="content" path="content" cols="30" rows="10" ></form:textarea>
 						</td>
 					</tr>
 					<tr>
 						<th><label for="title">첨부파일</label></th>
-						<td><form:input type="file" id="pic" path="pic"/></td>
+						<td><form:input type="file" id="pic" path="pic" value=${file }/></td>
 					</tr>
 				</table>
 				<form:input type="hidden" path="type" value="0" />
-				<form:input type="hidden" path="current_page" value="1" />
 				<div class="btns">
 					<a href="javascript:document.getElementById('commuForm').submit()" class="btn yellow">확인</a>
 					<a href="javascript:history.back();" class="btn gray">취소</a>

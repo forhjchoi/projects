@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="header.jsp" %>
+<c:set var="currPage" value="${current_page }"/>
+<%
+	int currentPage = Integer.parseInt((String) (pageContext.getAttribute("currPage")));
+	session.setAttribute("current_page", currentPage);
+%>
 
    <form name="notice_frm" id="notice_frm" method="get" action="">
 	<div id="location">

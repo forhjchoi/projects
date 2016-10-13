@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="header.jsp" %>
-
+<c:set var="currPage" value="${current_page }" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <div id="wrap">
@@ -63,6 +63,12 @@
 							<span class="th">조회수</span>
 							<span class="td">${article.hits }</span>
 						</li>
+					</ul>
+					<ul class="sub_tit">
+						<li class="first">
+							<span class="th">첨부파일</span>
+							<span class="td">${article.file }</span>
+						</li>
 					</ul>	
 					<div class="body">
 						<p>
@@ -112,8 +118,9 @@
 								
 							</span>
 						</li>
-					</ul>			
-					<a href="commu_free.do?current_page=${current_page }" class="link_list">목록보기</a>
+					</ul>
+					<a href="commu_free.do?current_page=${currPage }" class="link_list" style="border:1px;">목록보기</a>
+					<a href="commu_free_edit.do?num=${article.idx }" class="link_list" style="border:1px;">수정</a>
 				</div>
 			</div>
 			<!-- //본문 영역 -->

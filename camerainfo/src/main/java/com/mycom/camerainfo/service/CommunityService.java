@@ -16,30 +16,32 @@ public class CommunityService {
 		this.communityMapper = communityMapper;
 	}
 	
-	public int insertFree(CommunityDto commuDto) {
+	public int insertFree(CommunityDto commuDto) { // 자유게시판글 작성
 		if(commuDto.getPic() == null) {
-			return communityMapper.insertFree(commuDto);
+			return communityMapper.insertFree(commuDto); // 첨부파일 없이 글 작성
 		} else {
 			return communityMapper.insertFreeWithFile(commuDto.getName(), commuDto.getEmail(), commuDto.getTitle(), 
-					commuDto.getContent(), commuDto.getPic().getOriginalFilename());
+					commuDto.getContent(), commuDto.getPic().getOriginalFilename()); // 첨부파일과 같이 글 작성
 		}
 	}
 	
-	public int selectCntFree() {
+	public int selectCntFree() { // 자유게시판의 글의 수를 구함
 		return communityMapper.selectCntFree();
 	}
 	
-	public int selectCntFreeMin() {
+	public int selectCntFreeMin() { // 자유게시판의 게시물의 번호 중 가장 작은 번호를 구함
 		return communityMapper.selectCntFreeMin();
 	}
 	
-	public List<CommunityDto> selectListFree(int page) {
+	public List<CommunityDto> selectListFree(int page) { // 요청 페이지에 해당하는 자유게시판의 글 리스트를 반환
 		return communityMapper.selectListFree(page);
 	}
 	
-	public CommunityDto selectFree(int page) {
-		return communityMapper.selectFree(page);
+	public CommunityDto selectFree(int num) { // 자유게시판 글 읽기
+		return communityMapper.selectFree(num);
 	}
 	
-	
+	public void updateFreeHitsCnt(int idx) { // 자유게시판 글 읽기시 조회수를 올림
+		communityMapper.updateFreeHitsCnt(idx);
+	}
 }

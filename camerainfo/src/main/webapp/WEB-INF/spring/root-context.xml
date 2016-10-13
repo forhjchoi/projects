@@ -18,7 +18,7 @@
 			<value>home</value>
 		</property>
 		<property name="password">
-			<value>1234</value>
+			<value>12345</value>
 		</property>
 	</bean>
 	
