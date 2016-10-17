@@ -43,6 +43,7 @@ public class CommunityController {
 	
 	@RequestMapping(value = "/commu_free_write.do", method = RequestMethod.GET)
 	public String commuFreeWrite(Model model) {
+		model.addAttribute("current_page", "1");
 		model.addAttribute("communityDto", new CommunityDto());
 		return "commu_free_writeForm";
 	}

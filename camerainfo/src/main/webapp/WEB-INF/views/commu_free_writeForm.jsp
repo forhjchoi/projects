@@ -52,7 +52,7 @@
 					</tr>
 				</table>
 				<form:input type="hidden" path="type" value="0" />
-				<form:input type="hidden" path="current_page" value="1" />
+				<input type="hidden" name="current_page" value="1" />
 				<div class="btns">
 					<a href="javascript:document.getElementById('commuForm').submit()" class="btn yellow">확인</a>
 					<a href="javascript:history.back();" class="btn gray">취소</a>

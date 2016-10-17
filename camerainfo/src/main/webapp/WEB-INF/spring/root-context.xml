@@ -27,9 +27,11 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
+	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	
 	
 	<!-- service -->
 	<bean id="memberService" class="com.mycom.camerainfo.service.MemberService" />
@@ -44,6 +46,7 @@
 	<bean id="commuService" class="com.mycom.camerainfo.service.CommunityService">
 		<property name="communityMapper" ref="communityMapper" />
 	</bean>
+	<bean id="downloadService" class="com.mycom.camerainfo.service.DownloadService" />
 		
 	<!-- dto -->
 	<bean id="memberDto" class="com.mycom.camerainfo.dto.MemberDto" />

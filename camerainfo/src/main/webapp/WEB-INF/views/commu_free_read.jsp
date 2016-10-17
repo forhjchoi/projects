@@ -65,9 +65,11 @@
 						</li>
 					</ul>
 					<ul class="sub_tit">
-						<li class="first">
+						<li class="first" style="width:100%;">
 							<span class="th">첨부파일</span>
-							<span class="td">${article.file }</span>
+							<span class="td">
+								<a href="download.do?filename=${article.file }">${article.file }</a>
+							</span>
 						</li>
 					</ul>	
 					<div class="body">
