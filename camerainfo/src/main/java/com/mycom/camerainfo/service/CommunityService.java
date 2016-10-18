@@ -20,6 +20,8 @@ public class CommunityService {
 		switch (referer) {
 		case "free" : 
 			return communityMapper.insertFree(commuDto); // 자유게시판 글 작성
+		case "qna" :
+			return communityMapper.insertQna(commuDto); // 질문답변 글 작성
 		default : 
 			return 1;
 		}			
@@ -39,6 +41,10 @@ public class CommunityService {
 	
 	public CommunityDto selectFree(int num) { // 자유게시판 글 읽기
 		return communityMapper.selectFree(num);
+	}
+	
+	public int updateFree(String content, int idx) {
+		return communityMapper.updateFree(content, idx);
 	}
 	
 	public void updateFreeHitsCnt(int idx) { // 자유게시판 글 읽기시 조회수를 올림

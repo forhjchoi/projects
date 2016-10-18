@@ -16,7 +16,10 @@ import com.mycom.camerainfo.dto.CommunityDto;
 public interface CommunityMapper {
 	
 	public static final String INSERT_FREE = "insert into community (idx, type, name, email, title, content, wdate, hits) "
-			+ "values (community_seq.NEXTVAL, 0, #{name}, #{email}, #{title}, #{content}, SYSDATE, 0)";
+			+ "values (community_seq.NEXTVAL, #{type}, #{name}, #{email}, #{title}, #{content}, SYSDATE, 0)";
+	
+	public static final String INSERT_QNA = "insert into community (idx, type, name, email, title, content, wdate, ref, step, depth, hits) "
+			+ "values (community_seq.NEXTVAL, #{type}, #{name}, #{email}, #{title}, #{content}, SYSDATE, 0, 0, 0, 0)";
 	
 	public static final String SELECT_CNT_FREE = "select count(*) from community where type = 0";
 	
@@ -29,10 +32,15 @@ public interface CommunityMapper {
 	
 	public static final String SELECT_FREE = "select idx, name, email, title, content, pic, wdate, hits from community where idx=#{idx}";
 	
+	public static final String UPDATE_FREE = "update community set content = #{content} where idx = #{idx}";
+	
 	public static final String UPDATE_FREE_HITS_CNT = "update community set hits = NVL2(hits, hits + 1, 1) where idx = #{idx}";
 	
 	@Insert(INSERT_FREE)
 	public int insertFree(CommunityDto commuDto);
+	
+	@Insert(INSERT_QNA)
+	public int insertQna(CommunityDto commuDto); 
 	
 	@Select(SELECT_CNT_FREE)
 	public int selectCntFree();
@@ -55,6 +63,10 @@ public interface CommunityMapper {
 		@Result(property = "hits", column = "hits")
 	})
 	public CommunityDto selectFree(@Param("idx") int idx);
+	
+	@Update(UPDATE_FREE)
+	public int updateFree(@Param("content") String content, @Param("idx")int idx);
+	
 	
 	@Update(UPDATE_FREE_HITS_CNT)
 	public void updateFreeHitsCnt(@Param("idx") int idx);

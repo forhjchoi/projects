@@ -38,11 +38,19 @@ public class CommunityController {
 		return "commu_free";
 	}
 	
-	@RequestMapping(value = "/commu_free_write.do", method = RequestMethod.GET)
-	public String commuFreeWrite(Model model) {
+	@RequestMapping(value = "/commu_write.do", method = RequestMethod.GET)
+	public String commuFreeWrite(Model model, @RequestHeader(value = "referer", required = false) String referer) {
 		model.addAttribute("current_page", "1");
 		model.addAttribute("communityDto", new CommunityDto());
-		return "commu_free_writeForm";
+		System.out.println(getRefererUrl(referer));
+		switch(getRefererUrl(referer)) {
+		case "free" :
+			return "commu_free_writeForm";
+		case "qna" :
+			return "commu_qna_writeForm";
+		default :
+			return null;
+		}
 	}
 	
 	@RequestMapping(value = "/commu_free_read.do", method = RequestMethod.GET)
@@ -67,7 +75,9 @@ public class CommunityController {
 	}
 	
 	@RequestMapping(value = "/commu_qna.do", method = RequestMethod.GET)
-	public String commuQna(Model model) {
+	public String commuQna(Model model, @RequestParam("current_page") String currentPage) {
+		model.addAttribute("current_page", currentPage);
+		model.addAttribute("totalCnt", new Integer(commuService.selectCntFree()));
 		return "commu_qna";
 	}
 	
@@ -81,19 +91,29 @@ public class CommunityController {
 		return "commu_tips";
 	}
 	
-	@RequestMapping(value = "/commu_write_ok", method = RequestMethod.POST)
+	@RequestMapping(value = "/commu_write_ok.do", method = RequestMethod.POST)
 	public ModelAndView commuFreeWriteOk(Model model, @ModelAttribute CommunityDto communityDto,
 			@RequestHeader(value = "referer", required = false) String referer, @RequestParam("current_page") String currentPage) {
 		
-		commuService.insert(communityDto, getRefererUrl(referer));		
+		commuService.insert(communityDto, getRefererUrl(referer));
+		
 		model.addAttribute("current_page", currentPage);
+		
 		switch(getRefererUrl(referer)) {
 		case "free" : 
 			return new ModelAndView("redirect:/commu_free.do");
+		case "qna" :
+			return new ModelAndView("redirect:/commu_qna.do");
 		default : 
 			return null;
 		}
+	}
+	
+	@RequestMapping(value = "/commu_edit_ok.do", method = RequestMethod.POST)
+	public ModelAndView commuEditOk(Model model, @RequestParam("idx") String idx, @ModelAttribute("communityDto") CommunityDto communityDto) {
+		commuService.updateFree(communityDto.getContent(), Integer.parseInt(idx));
 		
+		return new ModelAndView("redirect:/commu_free_read.do?num=" + idx);
 	}
 	
 	public String getRefererUrl(String referer) {

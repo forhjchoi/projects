@@ -83,7 +83,7 @@
 						<c:if test="${memberInfo.id != null }">
 							<span><a href="#">&lt;</a></span>
 							<div class="search">
-								<a href="commu_free_write.do" class="searching">등록</a>	
+								<a href="commu_write.do" class="searching">등록</a>	
 							</div>
 						</c:if>					 
 					</div>
