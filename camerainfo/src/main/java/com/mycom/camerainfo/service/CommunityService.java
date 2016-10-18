@@ -16,13 +16,13 @@ public class CommunityService {
 		this.communityMapper = communityMapper;
 	}
 	
-	public int insertFree(CommunityDto commuDto) { // 자유게시판글 작성
-		if(commuDto.getPic() == null) {
-			return communityMapper.insertFree(commuDto); // 첨부파일 없이 글 작성
-		} else {
-			return communityMapper.insertFreeWithFile(commuDto.getName(), commuDto.getEmail(), commuDto.getTitle(), 
-					commuDto.getContent(), commuDto.getPic().getOriginalFilename()); // 첨부파일과 같이 글 작성
-		}
+	public int insert(CommunityDto commuDto, String referer) { // 커뮤니티 게시물 작성
+		switch (referer) {
+		case "free" : 
+			return communityMapper.insertFree(commuDto); // 자유게시판 글 작성
+		default : 
+			return 1;
+		}			
 	}
 	
 	public int selectCntFree() { // 자유게시판의 글의 수를 구함

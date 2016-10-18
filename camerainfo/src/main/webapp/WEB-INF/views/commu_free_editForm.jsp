@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="header.jsp" %>
-<c:set var="file" value="${communityDto.file }" />
+<c:set var="currPage" value="${current_page }" />
 <div id="location">
 		<div class="box_960">
 			<span>
@@ -24,7 +24,7 @@
 			</h1>
 
 			<!-- 본문 영역 -->
-			<form:form id="commuForm" action="commu_free_write_ok.do" method="post" enctype="multipart/form-data" commandName="communityDto">
+			<form:form id="commuForm" action="commu_write_ok.do" method="post" commandName="communityDto">
 			<div id="school_board_write">
 				<table class="tbl_vertical">
 					<caption>글수정</caption>
@@ -47,12 +47,9 @@
 							<form:textarea id="content" path="content" cols="30" rows="10" ></form:textarea>
 						</td>
 					</tr>
-					<tr>
-						<th><label for="title">첨부파일</label></th>
-						<td><form:input type="file" id="pic" path="pic" value="${file }"/></td>
-					</tr>
 				</table>
 				<form:input type="hidden" path="type" value="0" />
+				<input type="hidden" name="current_page" value="${currPage }" />
 				<div class="btns">
 					<a href="javascript:document.getElementById('commuForm').submit()" class="btn yellow">확인</a>
 					<a href="javascript:history.back();" class="btn gray">취소</a>

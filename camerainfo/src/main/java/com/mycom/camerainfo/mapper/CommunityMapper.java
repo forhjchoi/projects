@@ -18,9 +18,6 @@ public interface CommunityMapper {
 	public static final String INSERT_FREE = "insert into community (idx, type, name, email, title, content, wdate, hits) "
 			+ "values (community_seq.NEXTVAL, 0, #{name}, #{email}, #{title}, #{content}, SYSDATE, 0)";
 	
-	public static final String INSERT_FREE_WITH_FILE = "insert into community (idx, type, name, email, title, content, pic, wdate, hits) "
-			+ "values (community_seq.NEXTVAL, 0, #{name}, #{email}, #{title}, #{content}, #{pic}, SYSDATE, 0)";
-	
 	public static final String SELECT_CNT_FREE = "select count(*) from community where type = 0";
 	
 	public static final String SELECT_CNT_FREE_MIN = "select MIN(idx) from community where type = 0";
@@ -36,10 +33,6 @@ public interface CommunityMapper {
 	
 	@Insert(INSERT_FREE)
 	public int insertFree(CommunityDto commuDto);
-	
-	@Insert(INSERT_FREE_WITH_FILE)
-	public int insertFreeWithFile(@Param("name") String name, @Param("email") String email, 
-			@Param("title") String title, @Param("content") String content, @Param("pic") String pic);
 	
 	@Select(SELECT_CNT_FREE)
 	public int selectCntFree();

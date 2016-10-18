@@ -23,7 +23,7 @@
 			</h1>
 
 			<!-- 본문 영역 -->
-			<form:form id="commuForm" action="commu_free_write_ok.do" method="post" enctype="multipart/form-data" modelAttribute="communityDto">
+			<form:form id="commuForm" action="commu_write_ok.do" method="post" enctype="multipart/form-data" modelAttribute="communityDto">
 			<div id="school_board_write">
 				<table class="tbl_vertical">
 					<caption>글쓰기</caption>
@@ -45,10 +45,6 @@
 						<td>
 							<form:textarea id="content" path="content" cols="30" rows="10"></form:textarea>
 						</td>
-					</tr>
-					<tr>
-						<th><label for="title">첨부파일</label></th>
-						<td><form:input type="file" id="pic" path="pic"/></td>
 					</tr>
 				</table>
 				<form:input type="hidden" path="type" value="0" />

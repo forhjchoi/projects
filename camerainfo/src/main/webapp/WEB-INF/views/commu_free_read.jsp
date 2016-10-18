@@ -64,14 +64,6 @@
 							<span class="td">${article.hits }</span>
 						</li>
 					</ul>
-					<ul class="sub_tit">
-						<li class="first" style="width:100%;">
-							<span class="th">첨부파일</span>
-							<span class="td">
-								<a href="download.do?filename=${article.file }">${article.file }</a>
-							</span>
-						</li>
-					</ul>	
 					<div class="body">
 						<p>
 						${article.content }
@@ -122,7 +114,10 @@
 						</li>
 					</ul>
 					<a href="commu_free.do?current_page=${currPage }" class="link_list" style="border:1px;">목록보기</a>
-					<a href="commu_free_edit.do?num=${article.idx }" class="link_list" style="border:1px;">수정</a>
+					<c:if test="${memberInfo.id eq article.name }">
+						<a href="commu_edit.do?num=${article.idx }" class="link_list" style="border:1px;">수정</a>
+					</c:if>
+					
 				</div>
 			</div>
 			<!-- //본문 영역 -->
