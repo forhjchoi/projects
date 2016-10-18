@@ -42,7 +42,6 @@ public class CommunityController {
 	public String commuFreeWrite(Model model, @RequestHeader(value = "referer", required = false) String referer) {
 		model.addAttribute("current_page", "1");
 		model.addAttribute("communityDto", new CommunityDto());
-		System.out.println(getRefererUrl(referer));
 		switch(getRefererUrl(referer)) {
 		case "free" :
 			return "commu_free_writeForm";
@@ -66,6 +65,7 @@ public class CommunityController {
 	@RequestMapping(value = "/commu_edit.do", method = RequestMethod.GET)
 	public String commuFreeEdit(Model model, @RequestParam("num") String num, 
 			@RequestHeader(value = "referer", required = false) String referer) {
+		System.out.println(getRefererUrl(referer));
 		switch (getRefererUrl(referer)) {
 			case "free" : 
 				model.addAttribute("communityDto", commuService.selectFree(Integer.parseInt(num)));
@@ -117,9 +117,18 @@ public class CommunityController {
 	}
 	
 	public String getRefererUrl(String referer) {
-		String url = referer.substring(33);
-		List<String> list = new ArrayList<String>(Arrays.asList(url.split("_")));
-		url = list.get(1);
-		return url;
+		String rtnUrl = "";
+		String url = referer.substring(39);
+		String[] subUrl = new String[url.length()];
+		for(int i=0; i<subUrl.length; i++) {
+			subUrl[i] = Character.toString(url.charAt(i));
+			if(subUrl[i].equals(".")) {
+				break;
+			} else {
+				rtnUrl += subUrl[i];
+			}
+		}
+		
+		return rtnUrl;
 	}
 }
