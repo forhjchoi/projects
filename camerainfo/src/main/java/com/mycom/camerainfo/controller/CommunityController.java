@@ -36,7 +36,7 @@ public class CommunityController {
 		model.addAttribute("freeList", commuService.selectListFree(Integer.parseInt(currentPage)));
 		
 		return "commu_free";
-	}
+	} // 자유게시판 이동
 	
 	@RequestMapping(value = "/commu_write.do", method = RequestMethod.GET)
 	public String commuFreeWrite(Model model, @RequestHeader(value = "referer", required = false) String referer) {
@@ -50,7 +50,7 @@ public class CommunityController {
 		default :
 			return null;
 		}
-	}
+	} // 글 작성
 	
 	@RequestMapping(value = "/commu_free_read.do", method = RequestMethod.GET)
 	public String commuFreeRead(Model model, @RequestParam("num") String num) {
@@ -60,7 +60,7 @@ public class CommunityController {
 		model.addAttribute("article", commuService.selectFree(Integer.parseInt(num)));
 		
 		return "commu_free_read";
-	}
+	} // 자유게시판 글 읽기
 	
 	@RequestMapping(value = "/commu_edit.do", method = RequestMethod.GET)
 	public String commuFreeEdit(Model model, @RequestParam("num") String num, 
@@ -72,14 +72,16 @@ public class CommunityController {
 		}
 		
 		return "commu_free_editForm";
-	}
+	} // 커뮤니티 글 수정
 	
 	@RequestMapping(value = "/commu_qna.do", method = RequestMethod.GET)
 	public String commuQna(Model model, @RequestParam("current_page") String currentPage) {
 		model.addAttribute("current_page", currentPage);
 		model.addAttribute("totalCnt", new Integer(commuService.selectCntFree()));
+		model.addAttribute("qnaList", commuService.selectList(Integer.parseInt(currentPage), 1));
 		return "commu_qna";
-	}
+	} // 질문과답변 이동
+	
 	
 	@RequestMapping(value = "/commu_data.do", method = RequestMethod.GET)
 	public String commuData(Model model) {
@@ -92,17 +94,18 @@ public class CommunityController {
 	}
 	
 	@RequestMapping(value = "/commu_write_ok.do", method = RequestMethod.POST)
-	public ModelAndView commuFreeWriteOk(Model model, @ModelAttribute CommunityDto communityDto,
-			@RequestHeader(value = "referer", required = false) String referer, @RequestParam("current_page") String currentPage) {
+	public ModelAndView commuFreeWriteOk(Model model, @ModelAttribute CommunityDto communityDto, 
+			@RequestParam("type") String type, @RequestParam("current_page") String currentPage) {
 		
-		commuService.insert(communityDto, getRefererUrl(referer));
+		commuService.insert(communityDto, Integer.parseInt(type));
 		
 		model.addAttribute("current_page", currentPage);
 		
-		switch(getRefererUrl(referer)) {
-		case "free" : 
+		switch(Integer.parseInt(type)) {
+		case 0 : 
 			return new ModelAndView("redirect:/commu_free.do");
-		case "qna" :
+		case 1 :
+			System.out.println("hello");
 			return new ModelAndView("redirect:/commu_qna.do");
 		default : 
 			return null;

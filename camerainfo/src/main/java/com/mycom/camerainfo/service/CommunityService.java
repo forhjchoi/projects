@@ -16,15 +16,19 @@ public class CommunityService {
 		this.communityMapper = communityMapper;
 	}
 	
-	public int insert(CommunityDto commuDto, String referer) { // 커뮤니티 게시물 작성
-		switch (referer) {
-		case "free" : 
+	public int insert(CommunityDto commuDto, int type) { // 커뮤니티 게시물 작성
+		switch (type) {
+		case 0 : 
 			return communityMapper.insertFree(commuDto); // 자유게시판 글 작성
-		case "qna" :
+		case 1 :
 			return communityMapper.insertQna(commuDto); // 질문답변 글 작성
 		default : 
 			return 1;
 		}			
+	}
+	
+	public int selectCnt(int type) {
+		return communityMapper.selectCnt(type);
 	}
 	
 	public int selectCntFree() { // 자유게시판의 글의 수를 구함
@@ -33,6 +37,10 @@ public class CommunityService {
 	
 	public int selectCntFreeMin() { // 자유게시판의 게시물의 번호 중 가장 작은 번호를 구함
 		return communityMapper.selectCntFreeMin();
+	}
+	
+	public List<CommunityDto> selectList(int page, int type) {
+		return communityMapper.selectList(page, type);
 	}
 	
 	public List<CommunityDto> selectListFree(int page) { // 요청 페이지에 해당하는 자유게시판의 글 리스트를 반환

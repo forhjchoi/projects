@@ -50,7 +50,7 @@
 						<th scope="col">작성자</th>
 						<th scope="col" class="bg0 bdr0">조회수</th>
 					</tr>
-					<c:forEach var="free" items="${qnaList }">					
+					<c:forEach var="qna" items="${qnaList }">					
 					<tr>
 						<td>${qna.idx }</td>
 						<td class="align_l" style="text-align:center;">
